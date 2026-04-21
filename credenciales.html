@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Credenciales | Falla Pobla del Duc Benipeixcar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div class="brand">
+        <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
+        <div class="brand-text">
+          <p class="brand-mini">Administración</p>
+          <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-page">
+    <div class="container dashboard-layout">
+
+      <aside class="sidebar">
+        <h3>Menú</h3>
+        <nav>
+          <a href="admin.html" class="menu-link">Panel general</a>
+          <a href="#" class="menu-link">Eventos</a>
+          <a href="#" class="menu-link">Formularios</a>
+          <a href="#" class="menu-link">Comunicados</a>
+          <a href="credenciales.html" class="menu-link active">Credenciales</a>
+          <a href="monederos.html" class="menu-link">Monederos</a>
+          <a href="#" class="menu-link">QR</a>
+          <a href="index.html" class="menu-link">Volver al inicio</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-content">
+        <div class="dashboard-header">
+          <div>
+            <p class="brand-mini">Gestión de acceso</p>
+            <h2>Credenciales</h2>
+            <p class="dashboard-subtitle">Administración visual de usuarios, acceso y permisos.</p>
+          </div>
+          <span class="user-badge">Administrador</span>
+        </div>
+
+        <div class="toolbar-row">
+          <div class="search-box">
+            <input type="text" placeholder="Buscar usuario">
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-secondary" type="button">Filtrar</button>
+            <button class="btn btn-primary" type="button">Crear usuario</button>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-header">
+            <h3>Usuarios registrados</h3>
+            <p>Vista preparada para gestionar cuentas, roles y estado de acceso.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Usuario</th>
+                  <th>Rol</th>
+                  <th>Estado</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Usuario 1</td>
+                  <td>usuario1</td>
+                  <td>Fallero</td>
+                  <td>Activo</td>
+                  <td>Editar</td>
+                </tr>
+                <tr>
+                  <td>Usuario 2</td>
+                  <td>usuario2</td>
+                  <td>Administrador</td>
+                  <td>Activo</td>
+                  <td>Editar</td>
+                </tr>
+                <tr>
+                  <td>Usuario 3</td>
+                  <td>usuario3</td>
+                  <td>Fallero</td>
+                  <td>Inactivo</td>
+                  <td>Editar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="double-block">
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Formulario de usuario</h3>
+              <p>Espacio preparado para alta o edición de credenciales.</p>
+            </div>
+
+            <form class="admin-form">
+              <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" placeholder="Nombre del usuario">
+              </div>
+
+              <div class="form-group">
+                <label>Correo o usuario</label>
+                <input type="text" placeholder="Correo o usuario">
+              </div>
+
+              <div class="form-group">
+                <label>Rol</label>
+                <select>
+                  <option>Fallero</option>
+                  <option>Administrador</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Estado</label>
+                <select>
+                  <option>Activo</option>
+                  <option>Inactivo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" placeholder="Nueva contraseña">
+              </div>
+
+              <div class="form-actions-inline">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Acciones de acceso</h3>
+              <p>Espacio preparado para operaciones rápidas sobre las credenciales.</p>
+            </div>
+
+            <div class="action-list">
+              <div class="action-item">
+                <strong>Restablecer contraseña</strong>
+                <span>Acción preparada para generar una nueva clave.</span>
+              </div>
+              <div class="action-item">
+                <strong>Desactivar acceso</strong>
+                <span>Acción preparada para bloquear temporalmente una cuenta.</span>
+              </div>
+              <div class="action-item">
+                <strong>Cambiar rol</strong>
+                <span>Acción preparada para pasar de fallero a administrador o al revés.</span>
+              </div>
+              <div class="action-item">
+                <strong>Eliminar usuario</strong>
+                <span>Acción preparada para dar de baja una cuenta.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>

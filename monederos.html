@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monederos | Falla Pobla del Duc Benipeixcar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div class="brand">
+        <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
+        <div class="brand-text">
+          <p class="brand-mini">Administración</p>
+          <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-page">
+    <div class="container dashboard-layout">
+
+      <aside class="sidebar">
+        <h3>Menú</h3>
+        <nav>
+          <a href="admin.html" class="menu-link">Panel general</a>
+          <a href="#" class="menu-link">Eventos</a>
+          <a href="#" class="menu-link">Formularios</a>
+          <a href="#" class="menu-link">Comunicados</a>
+          <a href="credenciales.html" class="menu-link">Credenciales</a>
+          <a href="monederos.html" class="menu-link active">Monederos</a>
+          <a href="#" class="menu-link">QR</a>
+          <a href="index.html" class="menu-link">Volver al inicio</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-content">
+        <div class="dashboard-header">
+          <div>
+            <p class="brand-mini">Gestión económica interna</p>
+            <h2>Monederos</h2>
+            <p class="dashboard-subtitle">Administración visual del saldo y de los movimientos internos de cada fallero.</p>
+          </div>
+          <span class="user-badge">Administrador</span>
+        </div>
+
+        <div class="toolbar-row">
+          <div class="search-box">
+            <input type="text" placeholder="Buscar fallero">
+          </div>
+          <div class="toolbar-actions">
+            <button class="btn btn-secondary" type="button">Filtrar</button>
+            <button class="btn btn-primary" type="button">Nuevo movimiento</button>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-header">
+            <h3>Listado de monederos</h3>
+            <p>Vista preparada para consultar el saldo de cada fallero.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fallero</th>
+                  <th>Saldo</th>
+                  <th>Estado</th>
+                  <th>Último movimiento</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Usuario 1</td>
+                  <td>0 €</td>
+                  <td>Activo</td>
+                  <td>Sin definir</td>
+                  <td>Gestionar</td>
+                </tr>
+                <tr>
+                  <td>Usuario 2</td>
+                  <td>0 €</td>
+                  <td>Activo</td>
+                  <td>Sin definir</td>
+                  <td>Gestionar</td>
+                </tr>
+                <tr>
+                  <td>Usuario 3</td>
+                  <td>0 €</td>
+                  <td>Activo</td>
+                  <td>Sin definir</td>
+                  <td>Gestionar</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="double-block">
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Modificar saldo</h3>
+              <p>Espacio preparado para sumar o restar saldo del monedero.</p>
+            </div>
+
+            <form class="admin-form">
+              <div class="form-group">
+                <label>Fallero</label>
+                <select>
+                  <option>Seleccionar usuario</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Tipo de operación</label>
+                <select>
+                  <option>Sumar saldo</option>
+                  <option>Restar saldo</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Importe</label>
+                <input type="text" placeholder="Importe">
+              </div>
+
+              <div class="form-group">
+                <label>Concepto</label>
+                <input type="text" placeholder="Concepto del movimiento">
+              </div>
+
+              <div class="form-actions-inline">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Registro de movimiento</h3>
+              <p>Espacio preparado para anotar la operación realizada.</p>
+            </div>
+
+            <form class="admin-form">
+              <div class="form-group">
+                <label>Responsable</label>
+                <input type="text" placeholder="Administrador responsable">
+              </div>
+
+              <div class="form-group">
+                <label>Canal</label>
+                <select>
+                  <option>Manual</option>
+                  <option>QR</option>
+                  <option>Interno</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Observaciones</label>
+                <input type="text" placeholder="Observaciones">
+              </div>
+
+              <div class="form-actions-inline">
+                <button type="button" class="btn btn-secondary">Limpiar</button>
+                <button type="button" class="btn btn-primary">Registrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-header">
+            <h3>Historial de movimientos</h3>
+            <p>Vista preparada para consultar operaciones registradas.</p>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Fallero</th>
+                  <th>Tipo</th>
+                  <th>Importe</th>
+                  <th>Concepto</th>
+                  <th>Responsable</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Usuario 1</td>
+                  <td>Movimiento</td>
+                  <td>0 €</td>
+                  <td>Sin definir</td>
+                  <td>Administrador</td>
+                </tr>
+                <tr>
+                  <td>Usuario 2</td>
+                  <td>Movimiento</td>
+                  <td>0 €</td>
+                  <td>Sin definir</td>
+                  <td>Administrador</td>
+                </tr>
+                <tr>
+                  <td>Usuario 3</td>
+                  <td>Movimiento</td>
+                  <td>0 €</td>
+                  <td>Sin definir</td>
+                  <td>Administrador</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>

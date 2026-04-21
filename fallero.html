@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zona Fallero | Falla Pobla del Duc Benipeixcar</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="container topbar-content">
+      <div class="brand">
+        <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
+        <div class="brand-text">
+          <p class="brand-mini">Zona fallero</p>
+          <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-page">
+    <div class="container dashboard-layout">
+
+      <aside class="sidebar">
+        <h3>Menú</h3>
+        <nav>
+          <a href="fallero.html" class="menu-link active">Inicio</a>
+          <a href="#" class="menu-link">Calendario</a>
+          <a href="#" class="menu-link">Formularios</a>
+          <a href="#" class="menu-link">Monedero</a>
+          <a href="#" class="menu-link">Comunicados</a>
+          <a href="qr.html" class="menu-link">QR personal</a>
+          <a href="#" class="menu-link">Perfil</a>
+          <a href="index.html" class="menu-link">Volver al inicio</a>
+        </nav>
+      </aside>
+
+      <section class="dashboard-content">
+        <div class="dashboard-header">
+          <div>
+            <p class="brand-mini">Cuenta de usuario</p>
+            <h2 id="falleroNombre">Zona personal</h2>
+            <p class="dashboard-subtitle" id="falleroSubtitulo">Acceso a los apartados del fallero.</p>
+          </div>
+          <span class="user-badge" id="falleroRol">Fallero</span>
+        </div>
+
+        <div class="info-grid">
+          <article class="info-card">
+            <p class="info-label">Calendario</p>
+            <h3>Actos</h3>
+            <p>Bloque preparado para mostrar eventos</p>
+          </article>
+
+          <article class="info-card">
+            <p class="info-label">Formularios</p>
+            <h3>Respuestas</h3>
+            <p>Bloque preparado para mostrar formularios</p>
+          </article>
+
+          <article class="info-card">
+            <p class="info-label">Identificación</p>
+            <h3 id="falleroCodigo">Código interno</h3>
+            <p id="falleroCodigoTexto">Bloque preparado para mostrar el código del usuario</p>
+          </article>
+        </div>
+
+        <div class="double-block">
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Calendario</h3>
+              <p>Espacio reservado para los actos y fechas de la falla</p>
+            </div>
+
+            <div class="empty-box">
+              Aquí se mostrará el calendario del fallero.
+            </div>
+          </div>
+
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Formularios</h3>
+              <p>Espacio reservado para formularios activos y enviados</p>
+            </div>
+
+            <div class="empty-box">
+              Aquí se mostrarán los formularios disponibles.
+            </div>
+          </div>
+        </div>
+
+        <div class="double-block">
+          <div class="content-block">
+            <div class="block-header">
+              <h3>Monedero interno</h3>
+              <p>Espacio reservado para el saldo y los movimientos</p>
+            </div>
+
+            <div class="empty-box">
+              Aquí se mostrará la información del monedero interno.
+            </div>
+          </div>
+
+          <div class="content-block">
+            <div class="block-header">
+              <h3>QR personal</h3>
+              <p>Espacio reservado para el código QR asociado al usuario</p>
+            </div>
+
+            <div class="qr-box">
+              <div class="qr-placeholder"></div>
+              <p class="qr-text">Aquí se mostrará el QR personal del fallero.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-header">
+            <h3>Comunicados</h3>
+            <p>Espacio reservado para avisos y mensajes de la falla</p>
+          </div>
+
+          <div class="empty-box">
+            Aquí se mostrarán los comunicados del usuario.
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script src="js/fallero.js"></script>
+</body>
+</html>
