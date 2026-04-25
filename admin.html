@@ -1,160 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zona Administración | Falla Pobla del Duc Benipeixcar</title>
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin</title>
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="container topbar-content">
-      <div class="brand">
-        <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
-        <div class="brand-text">
-          <p class="brand-mini">Zona administración</p>
-          <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
-        </div>
-      </div>
-    </div>
-  </header>
+<main class="dashboard-page">
+<div class="container dashboard-layout">
 
-  <main class="dashboard-page">
-    <div class="container dashboard-layout">
+<aside class="sidebar">
+<h3>Admin</h3>
+<nav>
+<a class="menu-link active">Panel</a>
+<a class="menu-link">Eventos</a>
+<a class="menu-link">Usuarios</a>
+<a class="menu-link">Comunicados</a>
+<a class="menu-link">Formularios</a>
+</nav>
+</aside>
 
-      <aside class="sidebar">
-        <h3>Menú</h3>
-        <nav>
-            <a href="admin.html" class="menu-link active">Panel general</a>
-            <a href="#" class="menu-link">Eventos</a>
-            <a href="#" class="menu-link">Formularios</a>
-            <a href="#" class="menu-link">Comunicados</a>
-            <a href="credenciales.html" class="menu-link">Credenciales</a>
-            <a href="monederos.html" class="menu-link">Monederos</a>
-            <a href="#" class="menu-link">QR</a>
-            <a href="#" class="menu-link">Movimientos</a>
-            <a href="index.html" class="menu-link">Volver al inicio</a>
-        </nav>
-      </aside>
+<section class="dashboard-content">
 
-      <section class="dashboard-content">
-        <div class="dashboard-header">
-          <div>
-            <p class="brand-mini">Panel de control</p>
-            <h2>Zona de administración</h2>
-            <p class="dashboard-subtitle">Gestión general de la plataforma de la falla.</p>
-          </div>
-          <span class="user-badge">Administrador</span>
-        </div>
+<div class="dashboard-header">
+<div>
+<p class="dashboard-subtitle">Panel</p>
+<h2>Administración</h2>
+</div>
+<span class="user-badge">Admin</span>
+</div>
 
-        <div class="info-grid">
-          <article class="info-card">
-            <p class="info-label">Eventos</p>
-            <h3>Calendario general</h3>
-            <p>Bloque preparado para gestionar actos</p>
-          </article>
+<div class="info-grid">
+<div class="info-card"><span class="info-label">Eventos</span><h3 id="totalEventos">0</h3></div>
+<div class="info-card"><span class="info-label">Usuarios</span><h3 id="totalUsuarios">0</h3></div>
+<div class="info-card"><span class="info-label">Movimientos</span><h3>Activo</h3></div>
+</div>
 
-          <article class="info-card">
-            <p class="info-label">Usuarios</p>
-            <h3>Accesos y roles</h3>
-            <p>Bloque preparado para controlar permisos</p>
-          </article>
+<div class="content-block">
+<h3>Crear evento</h3>
+<form id="eventoForm" class="admin-form">
+<input id="eventoTitulo" placeholder="Título">
+<input id="eventoFecha" type="date">
+<input id="eventoHora" type="time">
+<input id="eventoLugar" placeholder="Lugar">
+<button class="btn btn-primary">Crear</button>
+</form>
+<table><tbody id="eventosLista"></tbody></table>
+</div>
 
-          <article class="info-card">
-            <p class="info-label">Monedero</p>
-            <h3>Control interno</h3>
-            <p>Bloque preparado para saldos y movimientos</p>
-          </article>
-        </div>
+<div class="content-block">
+<h3>Usuarios</h3>
+<form id="usuarioForm" class="admin-form">
+<input id="usuarioNombre" placeholder="Nombre">
+<select id="usuarioRol"><option value="fallero">Fallero</option><option value="admin">Admin</option></select>
+<input id="usuarioSaldo" placeholder="Saldo">
+<button class="btn btn-primary">Añadir</button>
+</form>
+<table><tbody id="usuariosLista"></tbody></table>
+</div>
 
-        <div class="double-block">
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de eventos</h3>
-              <p>Espacio reservado para crear, editar y organizar actos</p>
-            </div>
+<div class="content-block">
+<h3>Comunicados</h3>
+<form id="comunicadoForm" class="admin-form">
+<input id="comunicadoTitulo" placeholder="Título">
+<input id="comunicadoTexto" placeholder="Texto">
+<button class="btn btn-primary">Publicar</button>
+</form>
+<div id="comunicadosLista"></div>
+</div>
 
-            <div class="empty-box">
-              Aquí se mostrará la gestión de eventos.
-            </div>
-          </div>
+<div class="content-block">
+<h3>Formularios</h3>
+<form id="formularioForm" class="admin-form">
+<input id="formularioTitulo" placeholder="Título formulario">
+<button class="btn btn-primary">Crear</button>
+</form>
+<div id="formulariosLista"></div>
+</div>
 
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de formularios</h3>
-              <p>Espacio reservado para crear formularios y revisar respuestas</p>
-            </div>
+<div class="content-block">
+<h3>Movimientos</h3>
+<table><tbody id="movimientosLista"></tbody></table>
+</div>
 
-            <div class="empty-box">
-              Aquí se mostrará la gestión de formularios.
-            </div>
-          </div>
-        </div>
+</section>
+</div>
+</main>
 
-        <div class="double-block">
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de comunicados</h3>
-              <p>Espacio reservado para publicar avisos y mensajes</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrará la gestión de comunicados.
-            </div>
-          </div>
-
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de usuarios</h3>
-              <p>Espacio reservado para altas, bajas, roles y acceso</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrará la gestión de usuarios.
-            </div>
-          </div>
-        </div>
-
-        <div class="double-block">
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de monederos</h3>
-              <p>Espacio reservado para saldo, recargas y cargos internos</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrará la gestión del monedero interno.
-            </div>
-          </div>
-
-          <div class="content-block">
-            <div class="block-header">
-              <h3>Gestión de QR</h3>
-              <p>Espacio reservado para el control del QR de cada usuario</p>
-            </div>
-
-            <div class="qr-box">
-              <div class="qr-placeholder"></div>
-              <p class="qr-text">Aquí se mostrará la gestión del sistema QR.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-block">
-          <div class="block-header">
-            <h3>Movimientos internos</h3>
-            <p>Espacio reservado para el control de operaciones del monedero</p>
-          </div>
-
-          <div class="empty-box">
-            Aquí se mostrarán los movimientos internos registrados por la administración.
-          </div>
-        </div>
-
-      </section>
-    </div>
-  </main>
-
+<script src="js/admin.js"></script>
 </body>
 </html>
