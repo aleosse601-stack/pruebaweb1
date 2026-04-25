@@ -28,6 +28,7 @@
 <h3>Admin</h3>
 <nav>
 <a href="#resumen" class="menu-link active">Panel</a>
+<a href="#cobro" class="menu-link">Cobrar QR</a>
 <a href="#eventos" class="menu-link">Eventos</a>
 <a href="#usuarios" class="menu-link">Usuarios</a>
 <a href="#formularios" class="menu-link">Formularios</a>
@@ -51,6 +52,27 @@
 <div class="info-card"><span class="info-label">Eventos</span><h3 id="totalEventos">0</h3><p>Actos publicados</p></div>
 <div class="info-card"><span class="info-label">Usuarios</span><h3 id="totalUsuarios">0</h3><p>Falleros registrados</p></div>
 <div class="info-card"><span class="info-label">Sistema</span><h3>Activo</h3><p>Datos sincronizados en la app</p></div>
+</div>
+
+<div id="cobro" class="content-block app-section highlighted-block">
+<div class="block-header"><h3>Cobrar con QR</h3><p>Escanea el QR del fallero o introduce su código manualmente.</p></div>
+<div class="double-block">
+<div>
+<div id="qr-reader" style="width:100%;max-width:420px"></div>
+<div class="form-actions-inline">
+<button id="startScanner" class="btn btn-primary" type="button">Abrir cámara</button>
+<button id="stopScanner" class="btn btn-secondary" type="button">Cerrar cámara</button>
+</div>
+<p class="muted" id="scannerStatus">Escáner preparado.</p>
+</div>
+<form id="cobroForm" class="admin-form">
+<input id="cobroCodigo" placeholder="Código QR o código interno" required>
+<input id="cobroImporte" type="number" step="0.01" min="0.01" placeholder="Importe a cobrar" required>
+<input id="cobroConcepto" placeholder="Concepto. Ej: Consumición" value="Cobro por QR">
+<button class="btn btn-primary">Cobrar</button>
+<p id="cobroResultado" class="login-message"></p>
+</form>
+</div>
 </div>
 
 <div id="eventos" class="content-block app-section">
@@ -115,8 +137,9 @@
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
 <script src="js/supabase-client.js"></script>
-<script src="js/admin.js?v=30"></script>
+<script src="js/admin.js?v=31"></script>
 <script>
 document.querySelectorAll('.logout-btn').forEach(btn => {
   btn.addEventListener('click', () => {
