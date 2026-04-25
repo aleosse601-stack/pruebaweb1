@@ -5,8 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin</title>
 <link rel="stylesheet" href="css/styles.css?v=20">
+<link rel="stylesheet" href="css/app-extra.css?v=21">
 </head>
 <body>
+<header class="topbar">
+<div class="container topbar-content app-topbar-actions">
+<a href="index.html" class="brand brand-home" title="Ir al inicio">
+<img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
+<div class="brand-text">
+<p class="brand-mini">🏠 Inicio</p>
+<h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
+</div>
+</a>
+<button class="btn btn-secondary logout-btn" type="button">Cerrar sesión</button>
+</div>
+</header>
 
 <main class="dashboard-page">
 <div class="container dashboard-layout">
@@ -20,7 +33,7 @@
 <a href="#formularios" class="menu-link">Formularios</a>
 <a href="#comunicados" class="menu-link">Comunicados</a>
 <a href="#movimientos" class="menu-link">Movimientos</a>
-<a href="index.html" class="menu-link">Salir</a>
+<button class="menu-link logout-btn" type="button">Cerrar sesión</button>
 </nav>
 </aside>
 
@@ -98,6 +111,6 @@
 </div>
 </main>
 
-<script src="js/admin.js?v=20"></script>
+<script src="js/admin.js?v=21"></script>
 </body>
 </html>
