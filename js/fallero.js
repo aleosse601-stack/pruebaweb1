@@ -6,8 +6,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     eventos: [], usuarios: [], comunicados: [], formularios: [], movimientos: []
   };
 
+  function mergeByKey(localItems = [], remoteItems = [], keyFallback) {
+    const map = new Map();
+    [...remoteItems, ...localItems].forEach((item, index) => {
+      const key = item.id || item.usuario || item.titulo || item.nombre || `${keyFallback}-${index}`;
+      map.set(key, item);
+    });
+    return Array.from(map.values());
+  }
+
   async function cargarSupabase() {
     if (!hasSupabase) return false;
+    const localState = JSON.parse(localStorage.getItem('adminDemoData') || 'null') || state;
     try {
       const [eventosRes, usuariosRes, comunicadosRes, formulariosRes, movimientosRes] = await Promise.all([
         supabaseClient.from('eventos').select('*').order('fecha', { ascending: true }),
@@ -18,11 +28,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       ]);
       if (eventosRes.error || usuariosRes.error || comunicadosRes.error || formulariosRes.error || movimientosRes.error) return false;
       state = {
-        eventos: eventosRes.data || [],
-        usuarios: usuariosRes.data || [],
-        comunicados: comunicadosRes.data || [],
-        formularios: (formulariosRes.data || []).map(f => ({ ...f, opciones: Array.isArray(f.opciones) ? f.opciones : [], respuestas: Array.isArray(f.respuestas) ? f.respuestas : [] })),
-        movimientos: movimientosRes.data || []
+        eventos: mergeByKey(localState.eventos, eventosRes.data || [], 'evento'),
+        usuarios: mergeByKey(localState.usuarios, usuariosRes.data || [], 'usuario'),
+        comunicados: mergeByKey(localState.comunicados, comunicadosRes.data || [], 'comunicado'),
+        formularios: mergeByKey(localState.formularios, formulariosRes.data || [], 'formulario').map(f => ({ ...f, opciones: Array.isArray(f.opciones) ? f.opciones : [], respuestas: Array.isArray(f.respuestas) ? f.respuestas : [] })),
+        movimientos: mergeByKey(localState.movimientos, movimientosRes.data || [], 'movimiento')
       };
       localStorage.setItem('adminDemoData', JSON.stringify(state));
       return true;
@@ -46,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function crearCodigo(usuario) {
-    const base = (usuario.codigo_qr || usuario.codigo_interno || usuario.id || usuario.usuario || usuario.nombre || 'fallero').toString();
+    const base = (usuario.id || usuario.usuario || usuario.nombre || 'fallero').toString();
     return `FB-${base.slice(0, 12).toUpperCase()}`;
   }
 
@@ -55,16 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const qrText = document.getElementById('qrText');
     if (qrText) qrText.textContent = codigo;
     if (!canvas) return;
-    if (typeof QRCode !== 'undefined') {
-      QRCode.toCanvas(canvas, codigo, { width: 180, margin: 2 }, error => {
-        if (error) console.warn('Error generando QR', error);
-      });
-    } else {
-      const ctx = canvas.getContext('2d');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.font = '14px sans-serif';
-      ctx.fillText(codigo, 10, 90);
-    }
+    if (typeof QRCode !== 'undefined') QRCode.toCanvas(canvas, codigo, { width: 180, margin: 2 });
   }
 
   function render() {
