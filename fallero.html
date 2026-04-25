@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
   <header class="topbar">
     <div class="container topbar-content">
       <div class="brand">
@@ -22,18 +21,16 @@
 
   <main class="dashboard-page">
     <div class="container dashboard-layout">
-
       <aside class="sidebar">
         <h3>Menú</h3>
         <nav>
           <a href="fallero.html" class="menu-link active">Inicio</a>
-          <a href="#" class="menu-link">Calendario</a>
-          <a href="#" class="menu-link">Formularios</a>
-          <a href="#" class="menu-link">Monedero</a>
-          <a href="#" class="menu-link">Comunicados</a>
-          <a href="qr.html" class="menu-link">QR personal</a>
-          <a href="#" class="menu-link">Perfil</a>
-          <a href="index.html" class="menu-link">Volver al inicio</a>
+          <a href="#falleroEventosLista" class="menu-link">Calendario</a>
+          <a href="#falleroFormulariosLista" class="menu-link">Formularios</a>
+          <a href="#falleroSaldo" class="menu-link">Monedero</a>
+          <a href="#falleroComunicadosLista" class="menu-link">Comunicados</a>
+          <a href="#qrCanvas" class="menu-link">QR personal</a>
+          <a href="index.html" class="menu-link">Salir</a>
         </nav>
       </aside>
 
@@ -42,95 +39,64 @@
           <div>
             <p class="brand-mini">Cuenta de usuario</p>
             <h2 id="falleroNombre">Zona personal</h2>
-            <p class="dashboard-subtitle" id="falleroSubtitulo">Acceso a los apartados del fallero.</p>
+            <p class="dashboard-subtitle" id="falleroSubtitulo">Resumen de tu actividad en la falla.</p>
           </div>
           <span class="user-badge" id="falleroRol">Fallero</span>
         </div>
 
         <div class="info-grid">
           <article class="info-card">
-            <p class="info-label">Calendario</p>
-            <h3>Actos</h3>
-            <p>Bloque preparado para mostrar eventos</p>
+            <p class="info-label">Saldo</p>
+            <h3 id="falleroSaldo">0 €</h3>
+            <p>Monedero interno</p>
           </article>
-
           <article class="info-card">
-            <p class="info-label">Formularios</p>
-            <h3>Respuestas</h3>
-            <p>Bloque preparado para mostrar formularios</p>
+            <p class="info-label">Próximos actos</p>
+            <h3 id="falleroEventosCount">0</h3>
+            <p>Eventos publicados</p>
           </article>
-
           <article class="info-card">
             <p class="info-label">Identificación</p>
             <h3 id="falleroCodigo">Código interno</h3>
-            <p id="falleroCodigoTexto">Bloque preparado para mostrar el código del usuario</p>
+            <p id="falleroCodigoTexto">Código personal de acceso</p>
           </article>
         </div>
 
         <div class="double-block">
           <div class="content-block">
-            <div class="block-header">
-              <h3>Calendario</h3>
-              <p>Espacio reservado para los actos y fechas de la falla</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrará el calendario del fallero.
-            </div>
+            <div class="block-header"><h3>Calendario</h3><p>Actos publicados por administración</p></div>
+            <div id="falleroEventosLista" class="action-list"></div>
           </div>
-
           <div class="content-block">
-            <div class="block-header">
-              <h3>Formularios</h3>
-              <p>Espacio reservado para formularios activos y enviados</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrarán los formularios disponibles.
-            </div>
+            <div class="block-header"><h3>Formularios</h3><p>Formularios activos</p></div>
+            <div id="falleroFormulariosLista" class="action-list"></div>
           </div>
         </div>
 
         <div class="double-block">
           <div class="content-block">
-            <div class="block-header">
-              <h3>Monedero interno</h3>
-              <p>Espacio reservado para el saldo y los movimientos</p>
-            </div>
-
-            <div class="empty-box">
-              Aquí se mostrará la información del monedero interno.
-            </div>
+            <div class="block-header"><h3>Movimientos</h3><p>Operaciones de tu monedero</p></div>
+            <div class="table-wrap"><table><tbody id="falleroMovimientosLista"></tbody></table></div>
           </div>
-
           <div class="content-block">
-            <div class="block-header">
-              <h3>QR personal</h3>
-              <p>Espacio reservado para el código QR asociado al usuario</p>
-            </div>
-
+            <div class="block-header"><h3>QR personal</h3><p>Enséñalo para identificar tu cuenta</p></div>
             <div class="qr-box">
-              <div class="qr-placeholder"></div>
-              <p class="qr-text">Aquí se mostrará el QR personal del fallero.</p>
+              <canvas id="qrCanvas" width="180" height="180"></canvas>
+              <p class="qr-text" id="qrText">Código QR personal</p>
             </div>
           </div>
         </div>
 
         <div class="content-block">
-          <div class="block-header">
-            <h3>Comunicados</h3>
-            <p>Espacio reservado para avisos y mensajes de la falla</p>
-          </div>
-
-          <div class="empty-box">
-            Aquí se mostrarán los comunicados del usuario.
-          </div>
+          <div class="block-header"><h3>Comunicados</h3><p>Avisos de la falla</p></div>
+          <div id="falleroComunicadosLista" class="action-list"></div>
         </div>
-
       </section>
     </div>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
   <script src="js/fallero.js"></script>
 </body>
 </html>
