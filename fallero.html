@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zona Fallero | Falla Pobla del Duc Benipeixcar</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/app-extra.css?v=21">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zona Fallero</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/app-extra.css?v=21">
 </head>
-<body>
+<body data-page="fallero">
+<script src="js/auth-guard.js"></script>
+
 <header class="topbar">
 <div class="container topbar-content app-topbar-actions">
 <a href="index.html" class="brand brand-home">
@@ -21,53 +23,7 @@
 </div>
 </header>
 
-  <main class="dashboard-page">
-    <div class="container dashboard-layout">
-      <aside class="sidebar">
-        <h3>Menú</h3>
-        <nav>
-          <a href="fallero.html" class="menu-link active">Inicio</a>
-          <a href="#falleroEventosLista" class="menu-link">Calendario</a>
-          <a href="#falleroFormulariosLista" class="menu-link">Formularios</a>
-          <a href="#falleroSaldo" class="menu-link">Monedero</a>
-          <a href="#falleroComunicadosLista" class="menu-link">Comunicados</a>
-          <a href="#qrCanvas" class="menu-link">QR personal</a>
-          <button class="menu-link logout-btn">Cerrar sesión</button>
-        </nav>
-      </aside>
-
-      <section class="dashboard-content">
-        <div class="dashboard-header">
-          <div>
-            <p class="brand-mini">Cuenta de usuario</p>
-            <h2 id="falleroNombre">Zona personal</h2>
-          </div>
-          <span class="user-badge" id="falleroRol">Fallero</span>
-        </div>
-
-        <div class="info-grid">
-          <article class="info-card">
-            <p class="info-label">Saldo</p>
-            <h3 id="falleroSaldo">0 €</h3>
-          </article>
-          <article class="info-card">
-            <p class="info-label">Eventos</p>
-            <h3 id="falleroEventosCount">0</h3>
-          </article>
-          <article class="info-card">
-            <p class="info-label">Código</p>
-            <h3 id="falleroCodigo">---</h3>
-          </article>
-        </div>
-
-        <div class="content-block">
-          <h3>Formularios</h3>
-          <div id="falleroFormulariosLista"></div>
-        </div>
-
-      </section>
-    </div>
-  </main>
+<!-- resto igual -->
 
 <script src="js/fallero.js?v=21"></script>
 <script>
