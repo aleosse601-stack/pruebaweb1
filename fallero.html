@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zona Fallero | Falla Pobla del Duc Benipeixcar</title>
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/app-extra.css?v=21">
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-content">
-      <div class="brand">
-        <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
-        <div class="brand-text">
-          <p class="brand-mini">Zona fallero</p>
-          <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
-        </div>
-      </div>
-    </div>
-  </header>
+<header class="topbar">
+<div class="container topbar-content app-topbar-actions">
+<a href="index.html" class="brand brand-home">
+<img src="assets/img/logo.png" class="logo">
+<div class="brand-text">
+<p class="brand-mini">🏠 Inicio</p>
+<h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
+</div>
+</a>
+<button class="btn btn-secondary logout-btn">Cerrar sesión</button>
+</div>
+</header>
 
   <main class="dashboard-page">
     <div class="container dashboard-layout">
@@ -30,7 +32,7 @@
           <a href="#falleroSaldo" class="menu-link">Monedero</a>
           <a href="#falleroComunicadosLista" class="menu-link">Comunicados</a>
           <a href="#qrCanvas" class="menu-link">QR personal</a>
-          <a href="index.html" class="menu-link">Salir</a>
+          <button class="menu-link logout-btn">Cerrar sesión</button>
         </nav>
       </aside>
 
@@ -39,7 +41,6 @@
           <div>
             <p class="brand-mini">Cuenta de usuario</p>
             <h2 id="falleroNombre">Zona personal</h2>
-            <p class="dashboard-subtitle" id="falleroSubtitulo">Resumen de tu actividad en la falla.</p>
           </div>
           <span class="user-badge" id="falleroRol">Fallero</span>
         </div>
@@ -48,55 +49,34 @@
           <article class="info-card">
             <p class="info-label">Saldo</p>
             <h3 id="falleroSaldo">0 €</h3>
-            <p>Monedero interno</p>
           </article>
           <article class="info-card">
-            <p class="info-label">Próximos actos</p>
+            <p class="info-label">Eventos</p>
             <h3 id="falleroEventosCount">0</h3>
-            <p>Eventos publicados</p>
           </article>
           <article class="info-card">
-            <p class="info-label">Identificación</p>
-            <h3 id="falleroCodigo">Código interno</h3>
-            <p id="falleroCodigoTexto">Código personal de acceso</p>
+            <p class="info-label">Código</p>
+            <h3 id="falleroCodigo">---</h3>
           </article>
-        </div>
-
-        <div class="double-block">
-          <div class="content-block">
-            <div class="block-header"><h3>Calendario</h3><p>Actos publicados por administración</p></div>
-            <div id="falleroEventosLista" class="action-list"></div>
-          </div>
-          <div class="content-block">
-            <div class="block-header"><h3>Formularios</h3><p>Formularios activos</p></div>
-            <div id="falleroFormulariosLista" class="action-list"></div>
-          </div>
-        </div>
-
-        <div class="double-block">
-          <div class="content-block">
-            <div class="block-header"><h3>Movimientos</h3><p>Operaciones de tu monedero</p></div>
-            <div class="table-wrap"><table><tbody id="falleroMovimientosLista"></tbody></table></div>
-          </div>
-          <div class="content-block">
-            <div class="block-header"><h3>QR personal</h3><p>Enséñalo para identificar tu cuenta</p></div>
-            <div class="qr-box">
-              <canvas id="qrCanvas" width="180" height="180"></canvas>
-              <p class="qr-text" id="qrText">Código QR personal</p>
-            </div>
-          </div>
         </div>
 
         <div class="content-block">
-          <div class="block-header"><h3>Comunicados</h3><p>Avisos de la falla</p></div>
-          <div id="falleroComunicadosLista" class="action-list"></div>
+          <h3>Formularios</h3>
+          <div id="falleroFormulariosLista"></div>
         </div>
+
       </section>
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/supabase-client.js"></script>
-  <script src="js/fallero.js"></script>
+<script src="js/fallero.js?v=21"></script>
+<script>
+  document.querySelectorAll('.logout-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      localStorage.removeItem('usuarioActivo');
+      window.location.href = 'login.html';
+    });
+  });
+</script>
 </body>
 </html>
