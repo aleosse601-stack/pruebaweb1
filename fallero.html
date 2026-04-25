@@ -13,19 +13,105 @@
 <header class="topbar">
 <div class="container topbar-content app-topbar-actions">
 <a href="index.html" class="brand brand-home">
-<img src="assets/img/logo.png" class="logo">
+<img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="logo">
 <div class="brand-text">
 <p class="brand-mini">🏠 Inicio</p>
 <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
 </div>
 </a>
-<button class="btn btn-secondary logout-btn">Cerrar sesión</button>
+<button class="btn btn-secondary logout-btn" type="button">Cerrar sesión</button>
 </div>
 </header>
 
-<!-- resto igual -->
+<main class="dashboard-page">
+<div class="container dashboard-layout">
 
-<script src="js/fallero.js?v=21"></script>
+<aside class="sidebar">
+<h3>Fallero</h3>
+<nav>
+<a href="#resumen" class="menu-link active">Inicio</a>
+<a href="#eventos" class="menu-link">Calendario</a>
+<a href="#formularios" class="menu-link">Formularios</a>
+<a href="#monedero" class="menu-link">Monedero</a>
+<a href="#comunicados" class="menu-link">Comunicados</a>
+<a href="#qr" class="menu-link">QR personal</a>
+<button class="menu-link logout-btn" type="button">Cerrar sesión</button>
+</nav>
+</aside>
+
+<section class="dashboard-content">
+
+<div id="resumen" class="dashboard-header">
+<div>
+<p class="brand-mini">Cuenta de usuario</p>
+<h2 id="falleroNombre">Zona personal</h2>
+<p class="dashboard-subtitle">Consulta tus actos, formularios, saldo y comunicados.</p>
+</div>
+<span class="user-badge" id="falleroRol">Fallero</span>
+</div>
+
+<div class="info-grid">
+<article class="info-card">
+<p class="info-label">Saldo</p>
+<h3 id="falleroSaldo">0 €</h3>
+<p>Monedero interno</p>
+</article>
+<article class="info-card">
+<p class="info-label">Eventos</p>
+<h3 id="falleroEventosCount">0</h3>
+<p>Actos publicados</p>
+</article>
+<article class="info-card">
+<p class="info-label">Código</p>
+<h3 id="falleroCodigo">---</h3>
+<p>Identificación personal</p>
+</article>
+</div>
+
+<div class="double-block">
+<div id="eventos" class="content-block app-section">
+<div class="block-header"><h3>Calendario</h3><p>Actos publicados por administración.</p></div>
+<div id="falleroEventosLista" class="action-list"></div>
+</div>
+
+<div id="formularios" class="content-block app-section highlighted-block">
+<div class="block-header"><h3>Formularios</h3><p>Responde a los formularios activos.</p></div>
+<div id="falleroFormulariosLista" class="action-list"></div>
+</div>
+</div>
+
+<div class="double-block">
+<div id="monedero" class="content-block app-section">
+<div class="block-header"><h3>Movimientos del monedero</h3><p>Historial de recargas y cargos.</p></div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Concepto</th><th>Importe</th></tr></thead>
+<tbody id="falleroMovimientosLista"></tbody>
+</table>
+</div>
+</div>
+
+<div id="qr" class="content-block app-section">
+<div class="block-header"><h3>QR personal</h3><p>Enséñalo para identificar tu cuenta.</p></div>
+<div class="qr-box">
+<div class="qr-placeholder" id="qrVisual"></div>
+<p class="qr-text" id="qrText">Código personal</p>
+</div>
+</div>
+</div>
+
+<div id="comunicados" class="content-block app-section">
+<div class="block-header"><h3>Comunicados</h3><p>Avisos publicados por administración.</p></div>
+<div id="falleroComunicadosLista" class="action-list"></div>
+</div>
+
+</section>
+</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-client.js"></script>
+<script src="js/fallero.js?v=22"></script>
 <script>
   document.querySelectorAll('.logout-btn').forEach(btn => {
     btn.addEventListener('click', () => {
