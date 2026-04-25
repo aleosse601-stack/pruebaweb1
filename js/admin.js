@@ -48,7 +48,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   const renderUsuarios = () => {
     const el = document.getElementById('usuariosLista');
     if (!el) return;
-    el.innerHTML = state.usuarios.map((u, i) => `<tr><td>${u.nombre || ''}</td><td>${u.rol || ''}</td><td>${Number(u.saldo || 0).toFixed(2)} €</td><td>${u.estado || 'Activo'}</td><td><button class="small-btn" data-add-saldo="${i}" data-id="${u.id || ''}">+5 €</button></td></tr>`).join('') || '<tr><td colspan="5">No hay usuarios.</td></tr>';
+    el.innerHTML = state.usuarios.map((u, i) => `
+      <tr>
+        <td><input class="table-input" value="${u.nombre || ''}" data-nombre="${i}"></td>
+        <td><input class="table-input" value="${u.usuario || ''}" data-usuario="${i}"></td>
+        <td>
+          <select class="table-input" data-rol="${i}">
+            <option value="fallero" ${u.rol === 'fallero' ? 'selected' : ''}>Fallero</option>
+            <option value="admin" ${u.rol === 'admin' ? 'selected' : ''}>Admin</option>
+          </select>
+        </td>
+        <td>
+          <select class="table-input" data-estado="${i}">
+            <option value="activo" ${u.estado === 'activo' ? 'selected' : ''}>Activo</option>
+            <option value="inactivo" ${u.estado === 'inactivo' ? 'selected' : ''}>Inactivo</option>
+          </select>
+        </td>
+        <td><input class="table-input saldo-input" type="number" step="0.01" value="${Number(u.saldo || 0)}" data-saldo="${i}"></td>
+        <td class="table-actions">
+          <input class="table-input password-input" placeholder="Nueva clave" data-password="${i}">
+          <button class="small-btn" data-save-usuario="${i}" data-id="${u.id || ''}">Guardar</button>
+          <button class="small-btn" data-add-saldo="${i}" data-id="${u.id || ''}">+5 €</button>
+          <button class="small-btn danger" data-delete-usuario="${i}" data-id="${u.id || ''}">Eliminar</button>
+        </td>
+      </tr>
+    `).join('') || '<tr><td colspan="6">No hay usuarios.</td></tr>';
     document.getElementById('totalUsuarios').textContent = state.usuarios.length;
   };
 
@@ -90,10 +114,21 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('usuarioForm')?.addEventListener('submit', async e => {
     e.preventDefault();
-    const nuevo = { nombre: usuarioNombre.value, usuario: usuarioNombre.value.toLowerCase().replaceAll(' ', ''), rol: usuarioRol.value, saldo: Number(usuarioSaldo.value || 0), estado: 'activo', password_demo: '1234' };
+    const nuevo = {
+      nombre: usuarioNombre.value.trim(),
+      usuario: usuarioUsuario.value.trim().toLowerCase(),
+      email: usuarioEmail.value.trim().toLowerCase(),
+      rol: usuarioRol.value,
+      estado: usuarioEstado.value,
+      saldo: Number(usuarioSaldo.value || 0),
+      password_demo: usuarioPassword.value.trim(),
+      codigo_interno: `FB-${Date.now().toString().slice(-6)}`,
+      codigo_qr: `QR-${Date.now()}`
+    };
     if (usingSupabase) {
       const { data, error } = await supabaseClient.from('usuarios').insert(nuevo).select().single();
       if (!error && data) state.usuarios.push(data);
+      if (error) alert('No se ha podido crear el usuario en Supabase. Revisa columnas y permisos.');
     } else state.usuarios.push(nuevo);
     e.target.reset();
     renderAll();
@@ -130,6 +165,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       state.eventos.splice(idx, 1);
       renderAll();
     }
+
     if (e.target.dataset.delFormulario) {
       const idx = Number(e.target.dataset.delFormulario);
       const id = e.target.dataset.id;
@@ -137,6 +173,64 @@ document.addEventListener('DOMContentLoaded', async () => {
       state.formularios.splice(idx, 1);
       renderAll();
     }
+
+    if (e.target.dataset.saveUsuario) {
+      const idx = Number(e.target.dataset.saveUsuario);
+      const id = e.target.dataset.id;
+      const usuario = state.usuarios[idx];
+      const saldoAnterior = Number(usuario.saldo || 0);
+      const nuevoSaldo = Number(document.querySelector(`[data-saldo="${idx}"]`).value || 0);
+      const nuevaClave = document.querySelector(`[data-password="${idx}"]`).value.trim();
+
+      usuario.nombre = document.querySelector(`[data-nombre="${idx}"]`).value.trim();
+      usuario.usuario = document.querySelector(`[data-usuario="${idx}"]`).value.trim().toLowerCase();
+      usuario.rol = document.querySelector(`[data-rol="${idx}"]`).value;
+      usuario.estado = document.querySelector(`[data-estado="${idx}"]`).value;
+      usuario.saldo = nuevoSaldo;
+      if (nuevaClave) usuario.password_demo = nuevaClave;
+
+      const updatePayload = {
+        nombre: usuario.nombre,
+        usuario: usuario.usuario,
+        rol: usuario.rol,
+        estado: usuario.estado,
+        saldo: usuario.saldo
+      };
+      if (nuevaClave) updatePayload.password_demo = nuevaClave;
+
+      if (usingSupabase && id) {
+        const { error } = await supabaseClient.from('usuarios').update(updatePayload).eq('id', id);
+        if (error) alert('No se han podido guardar los cambios en Supabase.');
+      }
+
+      const diferencia = nuevoSaldo - saldoAnterior;
+      if (diferencia !== 0) {
+        const movimiento = { usuario: usuario.nombre, concepto: 'Ajuste manual admin', importe: diferencia };
+        if (usingSupabase) {
+          const { data } = await supabaseClient.from('movimientos').insert(movimiento).select().single();
+          state.movimientos.unshift(data || movimiento);
+        } else state.movimientos.unshift(movimiento);
+      }
+
+      renderAll();
+    }
+
+    if (e.target.dataset.deleteUsuario) {
+      const idx = Number(e.target.dataset.deleteUsuario);
+      const id = e.target.dataset.id;
+      const usuario = state.usuarios[idx];
+      if (!confirm(`¿Eliminar a ${usuario.nombre || 'este usuario'}?`)) return;
+      if (usingSupabase && id) {
+        const { error } = await supabaseClient.from('usuarios').delete().eq('id', id);
+        if (error) {
+          alert('No se ha podido eliminar el usuario en Supabase.');
+          return;
+        }
+      }
+      state.usuarios.splice(idx, 1);
+      renderAll();
+    }
+
     if (e.target.dataset.addSaldo) {
       const idx = Number(e.target.dataset.addSaldo);
       const usuario = state.usuarios[idx];
