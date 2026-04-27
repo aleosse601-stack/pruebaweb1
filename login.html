@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Acceso | Falla Pobla del Duc Benipeixcar</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=30">
+  <link rel="stylesheet" href="css/app-extra.css?v=30">
 </head>
 <body>
 
@@ -13,27 +14,54 @@
 
       <section class="login-info">
         <div class="login-brand">
-          <img src="assets/img/logo.png" alt="Logo" class="login-logo">
+          <img src="assets/img/logo.png" alt="Logo de la Falla Pobla del Duc Benipeixcar" class="login-logo">
           <div>
-            <p class="brand-mini">Acceso</p>
-            <h1>FALLA APP</h1>
+            <p class="brand-mini">Acceso a la plataforma</p>
+            <h1>FALLA POBLA DEL DUC BENIPEIXCAR</h1>
           </div>
+        </div>
+
+        <div class="login-text-box">
+          <h2>Entrada a la web interna</h2>
+          <p>Acceso privado para falleros y administración.</p>
         </div>
       </section>
 
       <section class="login-card">
+        <div class="block-header">
+          <h3>Iniciar sesión</h3>
+          <p>Introduce tus datos de acceso</p>
+        </div>
+
         <form class="login-form" id="loginForm">
-          <select id="tipoUsuario">
-            <option value="fallero">Fallero</option>
-            <option value="admin">Admin</option>
-          </select>
+          <div class="form-group">
+            <label for="tipoUsuario">Tipo de acceso</label>
+            <select id="tipoUsuario" name="tipoUsuario">
+              <option value="fallero">Fallero</option>
+              <option value="admin">Administración</option>
+            </select>
+          </div>
 
-          <input type="text" id="usuario" placeholder="Usuario">
-          <input type="password" id="password" placeholder="Contraseña">
+          <div class="form-group">
+            <label for="usuario">Usuario o correo</label>
+            <input type="text" id="usuario" name="usuario" placeholder="Introduce tu usuario">
+          </div>
 
-          <p id="loginMessage"></p>
-          <button type="submit">Entrar</button>
+          <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Introduce tu contraseña">
+          </div>
+
+          <p id="loginMessage" class="login-message"></p>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Entrar</button>
+          </div>
         </form>
+
+        <div class="login-footer-links">
+          <a href="index.html">Volver al inicio</a>
+        </div>
       </section>
 
     </div>
