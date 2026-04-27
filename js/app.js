@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     mostrarOk('Acceso correcto.');
 
     setTimeout(() => {
-      window.location.href = tipoUsuario === 'admin' ? 'admin.html' : 'fallero.html';
+      window.location.href = tipoUsuario === 'admin' ? 'admin-panel.html' : 'fallero.html';
     }, 300);
   }
 
